@@ -1,0 +1,17 @@
+{load_file("nrngui.hoc")}
+objectvar save_window_, rvp_
+objectvar scene_vector_[3]
+objectvar ocbox_, ocbox_list_, scene_, scene_list_
+{ocbox_list_ = new List()  scene_list_ = new List()}
+{pwman_place(0,0,0)}
+{
+save_window_ = new PlotShape(0)
+save_window_.size(33.0517,760.189,6.79926,484.372)
+save_window_.variable("v")
+scene_vector_[2] = save_window_
+{save_window_.view(33.0517, 6.79926, 727.138, 477.573, 1513, 295, 971.52, 638.08)}
+fast_flush_list.append(save_window_)
+save_window_.save_name("fast_flush_list.")
+}
+objectvar scene_vector_[1]
+{doNotify()}
