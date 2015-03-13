@@ -1,0 +1,18 @@
+n T x y z R P
+n is an integer label that identifies the current point and increments by one from one line to the next.
+
+T is an integer representing the type of neuronal segment, such as soma, axon, apical dendrite, etc. The standard accepted integer values are given below.
+
+0 = undefined
+1 = soma
+2 = axon
+3 = dendrite
+4 = apical dendrite
+5 = fork point
+6 = end point
+7 = custom
+x, y, z gives the cartesian coordinates of each node.
+
+R is the radius at that node.
+
+P indicates the parent (the integer label) of the current point or -1 to indicate an origin (soma).

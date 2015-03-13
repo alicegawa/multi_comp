@@ -385,9 +385,9 @@ obfunc makeSyn() { \
 		syn_.e = $4
 		
 		//**TODO** add the appropriate conditional branch e or i cell!!
-		syn_ = new ExpSynSTDP(0.5)
-		SynList_e.append(syn_)
-		syn_.e = 0
+		// syn_ = new ExpSynSTDP(0.5)
+		// SynList_e.append(syn_)
+		// syn_.e = 0
 		
 		//comment out for test. when u use, uncomment.
 		// syn_ = new ExpSynSTDP(0.5)

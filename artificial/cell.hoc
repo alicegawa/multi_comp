@@ -1,0 +1,129 @@
+begintemplate rall1
+
+public init, makeSyn, makeNetCon
+public soma, dend_parent, dend, axon, branchNum
+public synlist, synlist_e, synlist_i
+
+create soma, dend_parent, dend[branchNum], axon
+
+branchNum = 20
+create soma
+create axon
+// recreate in init section
+create dend_parent, dend[branchNum]
+objref synlist, synlist_e, synlist_i
+objref syn_, esyn, esyn_for_spon
+
+proc init() {local i, xshift, yshift, zshift localobj syn,r
+    xshift = $1
+    yshift = $2
+    zshift = $3
+    
+    synlist = new List()
+    synlist_e = new List()
+    synlist_i = new List()
+    
+    dend_parent {
+	for i=0, branchNum-1{
+	    connect dend[i](0), 1
+	}
+    }
+    connect soma(0), dend_parent(1)
+    connect axon(0), soma(1)
+
+    soma {
+	L = 30	
+	diam = 30
+	nseg = 10
+	cm = 1
+	insert GPeA
+	gnabar_GPeA = 0.12//0.12//0.19
+	
+	gkdrbar_GPeA = 0.005//0.06
+	gl_GPeA = 0.0003//0.0001
+	gcatbar_GPeA = 0.0001//0.005
+	gkcabar_GPeA = 0.002//0.004
+	ena_GPeA = 55
+	ek_GPeA = -70		
+	el_GPeA = -50//-54.3
+	eca_GPeA = 124
+    }
+    axon {
+	L = 500
+	diam = 0.2
+	nseg = 10
+	insert hh
+    }
+    
+    dend_parent {
+	L = 50
+	diam = 15
+	nseg = 10
+	insert pas
+    }
+    for i=0, branchNum-1{
+	dend[i] {
+	    L = 400
+	    diam = 2.03
+	    nseg = 10
+	    insert pas
+	}
+    }
+    
+    soma { 
+	esyn = new Exp2Syn(0.5)
+	synlist.append(esyn)
+	esyn_for_spon = new Exp2Syn(0.5)
+	synlist.append(esyn_for_spon)
+    }
+}
+
+// these might not be used before.
+obfunc connectNearCells() { localobj nc
+    axon nc = new NetCon(&v(0.5), $o1)
+    nc.threshold = 10
+    if(numarg()==2){ $o2 = nc}
+    return nc
+}
+obfunc connectFarCells() { localobj nc
+    axon nc = new NetCon(&v(1), $o1)
+    nc.threshold = 10
+    if(numarg()==2){ $o2 = nc}
+    return nc
+}
+
+obfunc makeSyn() {local targetno, hostno, num_ecell, num_vta, rw_flag, start_i, end_i, which_dend, where_dend
+    targetno = $1
+    hostno = $2
+    num_ecell = $3
+    num_vta = $4
+    rw_flag = $5
+    start_i = $6
+    end_i = $7
+    //which_dend should be the index of "for" section i.e. i
+    which_dend = $8
+    //position of synaptic connnection: read from prepared files
+    where_dend = $9
+
+    if(hostno<num_ecell){
+	dend[which_dend] {
+	    syn_ = new ExpSynSTDP(where_dend)
+	    synlist_e.append(syn_)
+	}
+	if(rw_flag){
+	    if(targetno<num_vta || (targetno >= start_i && targetno<end_i)){
+		syn_.forSpike = 2
+	    }
+	}
+    }else{
+	dend[which_dend] {
+	    syn_ = new Exp2Syn(where_dend)
+	    //syn_ = new ExpSynSTDP(where_dend)
+	    synlist_i.append(syn_)
+	    syn_.e = -45
+	}
+    }
+    return syn_
+}
+
+endtemplate rall1

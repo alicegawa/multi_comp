@@ -1,0 +1,6 @@
+begintemplate rall1
+BranchNum=1
+public soma, dend[BranchNum], axon
+public synlist, synlist_e, synlist_i
+
+create soma, dend[branchNum], axon

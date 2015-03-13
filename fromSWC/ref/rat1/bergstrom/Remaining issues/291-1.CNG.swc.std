@@ -1,0 +1,81 @@
+# Standardization file for 291-1.CNG.swc created with StdSwc version 1.31 on 2/13/12.
+#
+# code   irregularity_description. (action taken)
+#     irregularity_type     coordinates
+#
+4.3  Radius of line 2 at 3.31 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  1.84  9.98  -0.03
+4.3  Radius of line 3 at 3.31 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  2.45  9.13  -0.03
+4.3  Radius of line 4 at 3.31 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  3.19  7.91  -0.03
+4.3  Radius of line 133 at 2.085 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  9.94  7.43  -0.03
+4.3  Radius of line 1020 at 2.575 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  -16.93  15.47  6.56
+4.3  Radius of line 1021 at 2.575 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  -18.03  15.47  6.56
+4.3  Radius of line 1022 at 2.575 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  -19.26  15.47  6.56
+4.3  Radius of line 1023 at 2.575 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  -20.36  15.47  6.56
+4.3  Radius of line 1024 at 2.575 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  -21.22  15.47  6.56
+4.3  Radius of line 1025 at 2.27 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  -22.81  15.71  6.56
+4.3  Radius of line 1031 at 2.025 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  -32.75  16.44  6.56
+4.3  Radius of line 1032 at 2.21 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  -33.61  16.32  6.56
+4.3  Radius of line 1697 at 2.145 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  -8.59  8.19  0.42
+4.3  Radius of line 1698 at 2.145 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  -8.72  7.46  0.42
+4.3  Radius of line 1699 at 2.145 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  -8.84  6.24  0.5
+4.3  Radius of line 2031 at 3.375 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  1.96  29.37  -4.26
+4.3  Radius of line 2032 at 3.13 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  2.11  31.41  -6.7
+4.3  Radius of line 2033 at 2.945 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  3.59  35.43  -6.7
+4.3  Radius of line 2034 at 2.885 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  4.2  38.84  -6.7
+4.3  Radius of line 2035 at 2.885 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  6.04  41.4  -6.7
+4.3  Radius of line 2036 at 3.13 >= 5.0 stdevs above the mean.  (no action taken)
+     B1      X, Y, Z:  7.27  44.81  -6.7
+2.4  Length of segment ending at point 2 >= 6.0 stdevs above mean at 12.3216.  (no action taken)
+     B1      X, Y, Z:  1.84  9.98  -0.03
+2.4  Length of segment ending at point 409 >= 6.0 stdevs above mean at 13.3689.  (no action taken)
+     B1      X, Y, Z:  -16.71  18.98  -0.26
+2.4  Length of segment ending at point 1020 >= 6.0 stdevs above mean at 17.5792.  (no action taken)
+     B1      X, Y, Z:  -16.93  15.47  6.56
+2.4  Length of segment ending at point 1033 >= 6.0 stdevs above mean at 9.5064.  (no action taken)
+     B1      X, Y, Z:  -41.01  10.36  6.26
+2.4  Length of segment ending at point 1039 >= 6.0 stdevs above mean at 9.2083.  (no action taken)
+     B1      X, Y, Z:  -58.09  -12.28  6.26
+2.4  Length of segment ending at point 1078 >= 6.0 stdevs above mean at 9.1753.  (no action taken)
+     B1      X, Y, Z:  -83.77  -85.24  4.88
+2.4  Length of segment ending at point 1697 >= 6.0 stdevs above mean at 13.3579.  (no action taken)
+     B1      X, Y, Z:  -8.59  8.19  0.42
+2.4  Length of segment ending at point 2031 >= 6.0 stdevs above mean at 11.4545.  (no action taken)
+     B1      X, Y, Z:  1.96  29.37  -4.26
+2.4  Length of segment ending at point 2067 >= 6.0 stdevs above mean at 8.9439.  (no action taken)
+     B1      X, Y, Z:  24.27  92.11  -3.59
+2.4  Length of segment ending at point 2275 >= 6.0 stdevs above mean at 8.4027.  (no action taken)
+     B1      X, Y, Z:  -13.68  256.36  55.04
+2.4  Length of segment ending at point 2526 >= 6.0 stdevs above mean at 9.5766.  (no action taken)
+     B1      X, Y, Z:  37.08  195.16  35.65
+2.4  Length of segment ending at point 3231 >= 6.0 stdevs above mean at 8.7829.  (no action taken)
+     B1      X, Y, Z:  -21.71  101.86  1.33
+2.4  Length of segment ending at point 3418 >= 6.0 stdevs above mean at 8.58.  (no action taken)
+     B1      X, Y, Z:  -32.86  121.46  1.41
+2.4  Length of segment ending at point 3421 >= 6.0 stdevs above mean at 9.8372.  (no action taken)
+     B1      X, Y, Z:  -42.68  137.16  1.41
+2.4  Length of segment ending at point 3496 >= 6.0 stdevs above mean at 8.7718.  (no action taken)
+     B1      X, Y, Z:  -50.66  127.67  2.92
+2.1  Line 1 has 5 daughters.  Type is 1.  (no action taken)
+     B1      X, Y, Z:  -4.13  19.68  -4.73
+ 
+ 
