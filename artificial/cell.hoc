@@ -4,9 +4,11 @@ public init, makeSyn, makeNetCon
 public soma, dend_parent, dend, axon, branchNum
 public synlist, synlist_e, synlist_i
 
-create soma, dend_parent, dend[branchNum], axon
 
 branchNum = 20
+create soma, dend_parent, dend[branchNum], axon
+
+
 create soma
 create axon
 // recreate in init section
@@ -23,11 +25,12 @@ proc init() {local i, xshift, yshift, zshift localobj syn,r
     synlist_e = new List()
     synlist_i = new List()
     
-    dend_parent {
-	for i=0, branchNum-1{
-	    connect dend[i](0), 1
-	}
-    }
+    //dend_parent {
+    // for i=0, branchNum-1{
+    // 	connect dend[i](1), dend_parent(0)
+    // }
+    //}
+    connect dend_parent(0), dend[0](1)
     connect soma(0), dend_parent(1)
     connect axon(0), soma(1)
 
@@ -51,7 +54,7 @@ proc init() {local i, xshift, yshift, zshift localobj syn,r
     axon {
 	L = 500
 	diam = 0.2
-	nseg = 10
+	nseg = 20
 	insert hh
     }
     
@@ -65,7 +68,7 @@ proc init() {local i, xshift, yshift, zshift localobj syn,r
 	dend[i] {
 	    L = 400
 	    diam = 2.03
-	    nseg = 10
+	    nseg = 20
 	    insert pas
 	}
     }
@@ -107,7 +110,9 @@ obfunc makeSyn() {local targetno, hostno, num_ecell, num_vta, rw_flag, start_i, 
 
     if(hostno<num_ecell){
 	dend[which_dend] {
-	    syn_ = new ExpSynSTDP(where_dend)
+	    //really here is STDP
+	    syn_ = new Exp2Syn(where_dend)
+	    //syn_ = new ExpSynSTDP(where_dend)
 	    synlist_e.append(syn_)
 	}
 	if(rw_flag){
