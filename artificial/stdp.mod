@@ -65,6 +65,7 @@ NET_RECEIVE(w (uS), tpre (ms)) {
     :printf("Enter in net receive section.\n")
     :printf("flag = %g, %g times \n",flag,numbre)
     if (flag == 0) { : presynaptic spike  (after last post so depress)
+	printf("pre cell is fired at %g [ms]\n",t)
 	:printf("from pre to post. %g\n", flag)
 	:printf("before g = %g\n",g)
 	:printf("the w to add is %g",w)
@@ -74,7 +75,7 @@ NET_RECEIVE(w (uS), tpre (ms)) {
 	    :printf("enter the learning section.\n")
 	    if (w>=minWeight){
 		debug = tpost - t:LR*d*exp((tpost-t)/dtau)
-		:printf("%g \n",debug)
+		:printf("tpost-t = %g \n",debug)
 		w = w-(1+forDA)*LR*d*exp((tpost - t)/dtau)
 		:printf("after w = %g\n",w)
 		if(w<=minWeight){
@@ -89,6 +90,7 @@ NET_RECEIVE(w (uS), tpre (ms)) {
 	tpre = t
     }else if (flag == 2) { : postsynaptic spike
 	:printf("now is here(post to pre) %g \n",flag)
+	printf("post cell is fired at %g [ms]\n",t)
 	tmp=forSpike
 	if ( forSpike == 0){
 	    :skip to change forSpike
@@ -98,18 +100,19 @@ NET_RECEIVE(w (uS), tpre (ms)) {
 	
 	:if(forSpike!=tmp){
 	 :   printf("forSpike is changed!!\n")
-	:}
-	
+	:}xxxx
+	:printf("tpost (before) = %g\n",tpost)
 	tpost = t
+	:printf("tpost (after) = %g\n",tpost)
 	FOR_NETCONS(w1,tp){
             if(learning) {
 	:	printf("enter the learning section\n")
 		if(w1<=maxWeight){
         	    
 		    debug = LR*p*exp((tp-t)/ptau)
-	:	    printf("%g \n",debug)
+		    :printf("%g \n",debug)
 	            w1 = w1 + (1+forDA)*LR*p*exp((tp-t)/ptau):w1 = w1+LR*p*exp((tp - t)/ptau)
-	:	    printf("after w1 = %g\n",w1)
+		    :printf("after w1 = %g\n",w1)
 		}
 		if(w1>maxWeight){:if (w1>maxWeight){
 	            w1=maxWeight:w1 = maxWeight
@@ -122,6 +125,7 @@ NET_RECEIVE(w (uS), tpre (ms)) {
 	
     } else { : flag == 1 from INITIAL block
 	:printf("else section")
-	WATCH (v > -20) 2
+	:WATCH (v > -20) 2
+	WATCH (v > -35) 2
     }
 }

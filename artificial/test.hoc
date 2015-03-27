@@ -7,30 +7,62 @@ cell1 = new rall1(0,0,0,20)
 cell2 = new rall1(10,10,10,20)
 
 objref syn
-objref stim
-objref nclist, nc
+objref stim, stim2
+objref nclist, nc, nc2
 
 nclist = new List()
 stim = new NetStim(0.5)
 stim.start = 20
-stim.number = 2
-stim.interval = 20
+stim.number = 20
+stim.interval = 25
 stim.noise = 0
-nc = new NetCon(stim,cell1.synlist.o(0),0,0,0.8)
+nc = new NetCon(stim,cell1.synlist.o(0),0,0,0.1)//0.3)//0.25)
 nclist.append(nc)
-
-syn = cell2.makeSyn(0,1,100,10,0,101,120,0,0.5)
-cell1.axon {
-    nc = new NetCon(&v(1),syn,0,0,1)
-    nclist.append(nc)
+/*
+stim2 = new NetStim(0.5)
+stim2.start = 25
+stim2.number = 20
+stim2.interval = 25
+stim2.noise = 0
+nc2 = new NetCon(stim2,cell2.synlist.o(0),0,0,0.05)
+nclist.append(nc2)
+*/
+test_num = 30
+for i=1, test_num {
+    //syn = cell2.makeSyn(0,1,100,10,0,101,120,0,0.5)
+    syn = cell2.makeSyn(0,1,100,10,0,101,120,0,1-i/test_num)
+    cell1.axon {
+	nc = new NetCon(&v(1),syn,0,0,1)
+	nclist.append(nc)
+    }
 }
 
-//save detail section now under construction
-objref vvec,tvec
+// cell2.soma {
+//     syn = new Exp2Syn(0.5)
+//     cell2.synlist.append(syn)
+// }
+// cell1.soma {
+//     nc = new NetCon(&v(0.5),syn,0,0,0.2)
+//     nclist.append(nc)
+// }
+
+//Save detail section now under construction
+objref vvec,tvec, wvec
 vvec = new Vector()
 tvec = new Vector()
+wvec = new Vector()
+
+tvec.record(&t)
+wvec.record(&nclist.o(1).weight)
 
 load_file("graph.ses")
 dt = 0.025
-tstop = 50
+tstop = 550
+finitialize(-65)
+//fcurrent()
 run()
+
+//for i=0, tvec.size-1 {
+//    printf("%g[ms] %g(weight)\n",tvec.x(i),wvec.x(i))
+//}
+printf("%g[ms] %g(weight)\n",tvec.x(tvec.size-1),wvec.x(tvec.size-1))

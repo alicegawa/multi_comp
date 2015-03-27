@@ -315,6 +315,7 @@ static void _net_receive (_pnt, _args, _lflag) Point_process* _pnt; double* _arg
  {
    numbre = numbre + 1.0 ;
    if ( _lflag  == 0.0 ) {
+     printf ( "pre cell is fired at %g [ms]\n" , t ) ;
      g = g + _args[0] ;
      if ( learning ) {
        if ( _args[0] >= minWeight ) {
@@ -328,6 +329,7 @@ static void _net_receive (_pnt, _args, _lflag) Point_process* _pnt; double* _arg
      _args[1] = t ;
      }
    else if ( _lflag  == 2.0 ) {
+     printf ( "post cell is fired at %g [ms]\n" , t ) ;
      tmp = forSpike ;
      if ( forSpike  == 0.0 ) {
        }
