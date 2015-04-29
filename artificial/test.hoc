@@ -3,8 +3,8 @@ load_file("cell.hoc")
 
 objref cell1, cell2
 
-cell1 = new rall1(0,0,0,20)
-cell2 = new rall1(10,10,10,20)
+cell1 = new rall1(0,0,0,10)//20)
+cell2 = new rall1(10,10,10,10)//20)
 
 objref syn
 objref stim, stim2
@@ -16,7 +16,7 @@ stim.start = 20
 stim.number = 20
 stim.interval = 25
 stim.noise = 0
-nc = new NetCon(stim,cell1.synlist.o(0),0,0,0.1)//0.3)//0.25)
+nc = new NetCon(stim,cell1.synlist.o(0),0,0,0.1)//0.25)//0.1)//0.3)//0.25)
 nclist.append(nc)
 /*
 stim2 = new NetStim(0.5)
@@ -24,19 +24,43 @@ stim2.start = 25
 stim2.number = 20
 stim2.interval = 25
 stim2.noise = 0
-nc2 = new NetCon(stim2,cell2.synlist.o(0),0,0,0.05)
+nc2 = new NetCon(stim2,cell2.synlist.o(0),0,0,0.1)
 nclist.append(nc2)
 */
-test_num = 30
-for i=1, test_num {
-    //syn = cell2.makeSyn(0,1,100,10,0,101,120,0,0.5)
-    syn = cell2.makeSyn(0,1,100,10,0,101,120,0,1-i/test_num)
-    cell1.axon {
-	nc = new NetCon(&v(1),syn,0,0,1)
-	nclist.append(nc)
-    }
+
+test_num = 1//64
+
+
+syn = cell2.makeSyn(0,1,100,10,0,101,120,0,1)//1,1-i/test_num)
+cell1.axon {
+    nc = new NetCon(&v(1),syn,0,0.1,0.6)
+    nclist.append(nc)
+    nc.threshold = 0
 }
 
+
+// test_num = 1600//64
+// for i=0, test_num-1 {
+//     //syn = cell2.makeSyn(0,1,100,10,0,101,120,0,0.5)
+//     syn = cell2.makeSyn(0,1,100,10,0,101,120,int(i/160),(i%160)/160)//1,1-i/test_num)
+//     cell1.axon {
+// 	nc = new NetCon(&v(1),syn,0,0.1,0.6)
+// 	nclist.append(nc)
+// 	nc.threshold = -35
+//     }
+// }
+
+/*
+test_num = 3200
+for i=0, test_num {
+    syn = cell1.makeSyn(200,1,100,10,0,101,120,int(i/320),(i%320)/320)
+    cell2.axon{
+	nc = new NetCon(&v(1),syn,0,0,10)
+	nclist.append(nc)
+    }
+	
+}
+*/
 // cell2.soma {
 //     syn = new Exp2Syn(0.5)
 //     cell2.synlist.append(syn)
@@ -53,7 +77,7 @@ tvec = new Vector()
 wvec = new Vector()
 
 tvec.record(&t)
-wvec.record(&nclist.o(1).weight)
+//wvec.record(&nclist.o(1).weight)
 
 load_file("graph.ses")
 dt = 0.025
@@ -65,4 +89,4 @@ run()
 //for i=0, tvec.size-1 {
 //    printf("%g[ms] %g(weight)\n",tvec.x(i),wvec.x(i))
 //}
-printf("%g[ms] %g(weight)\n",tvec.x(tvec.size-1),wvec.x(tvec.size-1))
+//printf("%g[ms] %g(weight)\n",tvec.x(tvec.size-1),wvec.x(tvec.size-1))

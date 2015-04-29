@@ -264,7 +264,7 @@ extern void _cvode_abstol( Symbol**, double*, int);
  pnt_receive_size[_mechtype] = 2;
  add_nrn_fornetcons(_mechtype, _fnc_index);
  	hoc_register_var(hoc_scdoub, hoc_vdoub, hoc_intfunc);
- 	ivoc_help("help ?1 ExpSynSTDP /home/alicegawa/github/multi_comp/artificial/x86_64/stdp.mod\n");
+ 	ivoc_help("help ?1 ExpSynSTDP /home/alicegawa/workspace/github/multi_comp/artificial/x86_64/stdp.mod\n");
  hoc_register_limits(_mechtype, _hoc_parm_limits);
  hoc_register_units(_mechtype, _hoc_parm_units);
  }
@@ -303,7 +303,7 @@ static double _watch1_cond(_pnt) Point_process* _pnt; {
 	_thread= (Datum*)0; _nt = (_NrnThread*)_pnt->_vnt;
  	_p = _pnt->_prop->param; _ppvar = _pnt->_prop->dparam;
 	v = NODEV(_pnt->node);
-	return  ( v ) - ( - 20.0 ) ;
+	return  ( v ) - ( - 35.0 ) ;
 }
  
 static void _net_receive (_pnt, _args, _lflag) Point_process* _pnt; double* _args; double _lflag; 

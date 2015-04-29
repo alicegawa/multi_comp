@@ -8,7 +8,7 @@ objectvar ocbox_, ocbox_list_, scene_, scene_list_
 save_window_ = new Graph(0)
 save_window_.size(0,550,-65,25)
 scene_vector_[2] = save_window_
-{save_window_.view(0, -65, 550, 90, 172, 108, 617.28, 458.56)}
+{save_window_.view(0, -65, 550, 90, 154, 92, 1295.04, 704.32)}
 graphList[0].append(save_window_)
 save_window_.save_name("graphList[0].")
 save_window_.addexpr("v(.5)", 1, 1, 0.8, 0.9, 2)
@@ -18,6 +18,8 @@ save_window_.addexpr("cell2.dend[1].v( 0.5 )", 4, 1, 0.8, 0.9, 2)
 save_window_.addexpr("cell2.dend[2].v(0.5)", 4, 1, 0.8, 0.9, 2)
 save_window_.addexpr("cell2.dend[6].v(0.5)", 4, 1, 0.8, 0.9, 2)
 save_window_.addexpr("cell2.dend[0].v(1)", 6, 1, 0.8, 0.9, 2)
+save_window_.addexpr("cell2.dend[0].v(0)", 8, 1, 0.8, 0.9, 2)
+save_window_.addexpr("cell1.dend[0].v(0)", 1, 4, 0.8, 0.9, 2)
 }
 objectvar scene_vector_[1]
 {doNotify()}

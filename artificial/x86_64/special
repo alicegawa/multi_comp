@@ -10,4 +10,4 @@ if test "" = "yes" ; then
 else
 	NRNIV="${NRNBIN}nrniv"
 fi
-"${NRNIV}" -dll "/home/alicegawa/github/multi_comp/artificial/x86_64/.libs/libnrnmech.so" "$@"
+"${NRNIV}" -dll "/home/alicegawa/workspace/github/multi_comp/artificial/x86_64/.libs/libnrnmech.so" "$@"
