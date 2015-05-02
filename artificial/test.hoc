@@ -16,15 +16,16 @@ stim.start = 20//20
 stim.number = 20
 stim.interval = 25
 stim.noise = 0
-nc = new NetCon(stim,cell1.synlist.o(0),0,0,0.3)//0.25)//0.1)//0.3)//0.25)
+nc = new NetCon(stim,cell1.synlist.o(0),0,0,0.25)//0.3)//0.25)//0.1)//0.3)//0.25)
 nclist.append(nc)
+
 /*
 stim2 = new NetStim(0.5)
 stim2.start = 25
 stim2.number = 20
 stim2.interval = 25
 stim2.noise = 0
-nc2 = new NetCon(stim2,cell2.synlist.o(0),0,0,0.5)
+nc2 = new NetCon(stim2,cell2.synlist.o(0),0,0,0.35)
 nclist.append(nc2)
 */
 
@@ -39,15 +40,18 @@ cell1.axon {
     nc.threshold = 0
 }
 */
+/*
+// experiment for the connection up and down in the input layer
 syn = cell2.makeSynUpDown(0,200,100,10,0,0,10)
 cell1.soma{
     nc = new NetCon(&v(0.5),syn,0,0.1,0.35)
     nclist.append(nc)
     nc.threshold = 0
 }
-
+*/
 
 /*
+// experiment for the input strength suitable for the fire in inhibitory synaptic inputs
 counter = 0
 objref r
 r = new Random(25525)
@@ -68,17 +72,31 @@ for i=0, test_num-1 {
 }
 */
 
-/*
-test_num = 3200
-for i=0, test_num {
-    syn = cell1.makeSyn(200,1,100,10,0,101,120,int(i/320),(i%320)/320)
-    cell2.axon{
-	nc = new NetCon(&v(1),syn,0,0,10)
-	nclist.append(nc)
-    }
+
+test_num = 1200//640//1000//3200
+objref r
+r = new Random(25525)
+perbranch = int(test_num/10)
+for i=0, test_num-1 {
+    if(r.uniform(0,100)<20){
+	syn = cell2.makeSyn(0,1000,100,10,0,101,120,int(i/perbranch),0.25+0.5*((i%perbranch)/perbranch))
+	cell1.axon{
+	    nc = new NetCon(&v(1),syn,0,0,0.01)
+	    nclist.append(nc)
+	}
 	
+    }else{
+	syn = cell2.makeSyn(0,1,100,10,0,101,120,int(i/perbranch),0.25+0.5*((i%perbranch)/perbranch))
+	cell1.axon{
+	    nc = new NetCon(&v(1),syn,0,0,0.008)
+	    nclist.append(nc)
+	}
+	
+    }
+    
 }
-*/
+
+
 // cell2.soma {
 //     syn = new Exp2Syn(0.5)
 //     cell2.synlist.append(syn)
@@ -98,6 +116,7 @@ tvec.record(&t)
 //wvec.record(&nclist.o(1).weight)
 
 load_file("graph.ses")
+load_file("graph2.ses")
 dt = 0.025
 tstop = 550
 finitialize(-65)
