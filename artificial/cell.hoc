@@ -61,8 +61,8 @@ proc init() {local i, xshift, yshift, zshift localobj syn,r
 	
 	pt3dclear()
 	
-	pt3dadd(500,0,0,diam)
-	pt3dadd(530,0,0,diam)	
+	pt3dadd(500+xshift,yshift,zshift,diam)
+	pt3dadd(530+xshift,yshift,zshift,diam)	
 
 	insert GPeA
 	gnabar_GPeA = 0.12//0.12//0.19
@@ -84,8 +84,8 @@ proc init() {local i, xshift, yshift, zshift localobj syn,r
 	nseg = 10
 	
 	pt3dclear()
-	pt3dadd(530,0,0,diam)
-	pt3dadd(580,0,0,diam)
+	pt3dadd(530+xshift,yshift,zshift,diam)
+	pt3dadd(580+xshift,yshift,zshift,diam)
 	
 
 
@@ -106,8 +106,8 @@ proc init() {local i, xshift, yshift, zshift localobj syn,r
 	nseg = 160//10
 	pt3dclear()
 	
-	pt3dadd(580,0,0,diam)
-	pt3dadd(846.4,400*0.5*cos(i*2*3.1415/branchNum),400*0.5*sin(i*2*3.1415/branchNum),diam)
+	pt3dadd(580+xshift,yshift,zshift,diam)
+	pt3dadd(846.4+xshift,yshift+400*0.5*cos(i*2*3.1415/branchNum),zshift+400*0.5*sin(i*2*3.1415/branchNum),diam)
 
 	// insert hh
 	// gnabar_hh = 0.006
@@ -183,7 +183,7 @@ obfunc makeSyn() {local targetno, hostno, num_ecell, num_vta, rw_flag, start_i, 
 	    syn_ = new Exp2Syn(where_dend)
 	    //syn_ = new ExpSynSTDP(where_dend)
 	    synlist_i.append(syn_)
-	    syn_.e = -45
+	    syn_.e = -45//-45
 	}
     }
     return syn_

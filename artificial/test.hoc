@@ -4,7 +4,7 @@ load_file("cell.hoc")
 objref cell1, cell2
 
 cell1 = new rall1(0,0,0,10)//20)
-cell2 = new rall1(10,10,10,10)//20)
+cell2 = new rall1(1000,1000,1000,10)//20)
 
 objref syn
 objref stim, stim2
@@ -12,22 +12,23 @@ objref nclist, nc, nc2
 
 nclist = new List()
 stim = new NetStim(0.5)
-stim.start = 20
+stim.start = 20//20
 stim.number = 20
 stim.interval = 25
 stim.noise = 0
-nc = new NetCon(stim,cell1.synlist.o(0),0,0,0.1)//0.25)//0.1)//0.3)//0.25)
+nc = new NetCon(stim,cell1.synlist.o(0),0,0,0.3)//0.25)//0.1)//0.3)//0.25)
 nclist.append(nc)
-/*
+
 stim2 = new NetStim(0.5)
 stim2.start = 25
 stim2.number = 20
 stim2.interval = 25
 stim2.noise = 0
-nc2 = new NetCon(stim2,cell2.synlist.o(0),0,0,0.1)
+nc2 = new NetCon(stim2,cell2.synlist.o(0),0,0,0.5)
 nclist.append(nc2)
-*/
 
+
+/*
 test_num = 1//64
 
 
@@ -37,18 +38,25 @@ cell1.axon {
     nclist.append(nc)
     nc.threshold = 0
 }
-
-
-// test_num = 1600//64
-// for i=0, test_num-1 {
-//     //syn = cell2.makeSyn(0,1,100,10,0,101,120,0,0.5)
-//     syn = cell2.makeSyn(0,1,100,10,0,101,120,int(i/160),(i%160)/160)//1,1-i/test_num)
-//     cell1.axon {
-// 	nc = new NetCon(&v(1),syn,0,0.1,0.6)
-// 	nclist.append(nc)
-// 	nc.threshold = -35
-//     }
-// }
+*/
+counter = 0
+objref r
+r = new Random(25525)
+test_num = 400//64
+for i=0, test_num-1 {
+    //syn = cell2.makeSyn(0,1,100,10,0,101,120,0,0.5)
+//    if(r.uniform(0,100)<80){
+//	syn = cell2.makeSyn(0,1,100,10,0,101,120,int(i/80),0.25+(i%80)/160)//1,1-i/test_num)
+//    }else{
+	syn = cell2.makeSyn(0,200,100,10,0,101,120,int(i/40),0.25+(i%40)/80)
+//	counter += 1
+//    }
+	cell1.axon {
+	nc = new NetCon(&v(1),syn,0,0.1,0.01)
+	nclist.append(nc)
+	nc.threshold = 0
+    }
+}
 
 /*
 test_num = 3200
@@ -90,3 +98,4 @@ run()
 //    printf("%g[ms] %g(weight)\n",tvec.x(i),wvec.x(i))
 //}
 //printf("%g[ms] %g(weight)\n",tvec.x(tvec.size-1),wvec.x(tvec.size-1))
+printf("%d/800 are inhibitory\n",counter)
