@@ -1,6 +1,6 @@
 begintemplate rall1
 
-public init, makeSyn, makeNetCon
+public init, makeSyn, makeNetCon, makeSynUpDown
 public soma, dend_parent, dend, axon, branchNum
 public synlist, synlist_e, synlist_i
 
@@ -188,5 +188,28 @@ obfunc makeSyn() {local targetno, hostno, num_ecell, num_vta, rw_flag, start_i, 
     }
     return syn_
 }
+
+obfunc makeSynUpDown(){local targetno, hostno, num_ecell, num_vta, rw_flag, start_i, end_i
+    targetno = $1
+    hostno = $2
+    num_ecell = $3
+    num_vta = $4
+    rw_flag = $5
+    start_i = $6
+    end_i = $7
+    if(hostno<num_ecell){
+        soma {
+            syn_ = new ExpSynSTDP(0.5)
+            synlist_e.append(syn_)
+        }
+    }else{
+        soma {
+            syn_ = new Exp2Syn(0.5)
+            synlist_i.append(syn_)
+        }
+    }
+    return syn_
+}
+
 
 endtemplate rall1
